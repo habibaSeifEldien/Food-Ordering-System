@@ -8,7 +8,6 @@ public abstract class Registration {
     protected String email;
     protected String password;
 
-
     public Registration(String FirstName, String LastName, String email, String password)
     {
         this.FirstName = FirstName;
@@ -16,10 +15,7 @@ public abstract class Registration {
         this.email = email;
         this.password = password;
     }
-    public Registration(){
-
-    }
-
+    public Registration(){}
     public void setFirstName(String FirstName) {
         this.FirstName = FirstName;
     }

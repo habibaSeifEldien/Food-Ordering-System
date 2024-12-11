@@ -1,31 +1,32 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Order {
+public class Order implements PaymentHandler {
 
-    public float totalFee;
-    String Payment;
-    User UserObj;
-    Restaurant res;
-    public Cart c;
-    String orderState = "Confirmed";
-    long stateStartTime;
-    static ArrayList<Order> orders = new ArrayList<>();
-    static int globalOrderId = 35656;
-    int orderId;
-    Scanner scanner = new Scanner(System.in);
-    Boolean confm = false;
+    private float totalFee;
+    private String paymentMethod;
+    private User user;
+    private Restaurant restaurant;
+    private Cart cart;
+    private String orderStatus = "Confirmed";
+    private long orderStartTime;
 
-    Order(User UserObj, Restaurant res, Cart c, float totalFee) {
-        this.res = res;
-        this.UserObj = UserObj;
-        this.c = c;
+    private static ArrayList<Order> orderList = new ArrayList<>();
+    private static int nextOrderId = 35656;
+    private int orderId;
+    private Scanner scanner = new Scanner(System.in);
+    private boolean isConfirmed = false;
+
+    public Order(User user, Restaurant restaurant, Cart cart, float totalFee) {
+        this.user = user;
+        this.restaurant = restaurant;
+        this.cart = cart;
         this.totalFee = totalFee;
-        this.orderId = globalOrderId++;
+        this.orderId = nextOrderId++;
     }
 
-    public static Order searchForId(int orderId) {
-        for (Order order : orders) {
+    public static Order searchById(int orderId) {
+        for (Order order : orderList) {
             if (order.orderId == orderId) {
                 System.out.println("Order found with ID: " + orderId);
                 return order;
@@ -35,71 +36,107 @@ public class Order {
         return null;
     }
 
-    float calcTotal(Cart c) {
-        this.totalFee = (c.Total + res.getDeliveryFee() + res.getServiceFee());
+    public float calculateTotalFee() {
+        this.totalFee = cart.Total + restaurant.getDeliveryFee() + restaurant.getServiceFee();
         return totalFee;
     }
 
-    void fillPay() {
-        System.out.println("Cash or Credit/Digital wallets");
-        String Pay = scanner.nextLine().trim().toLowerCase();
-        this.Payment = Pay;
+    @Override
+    public void selectPaymentMethod() {
+        System.out.println("Select payment method: Cash, Credit, or Digital Wallets");
+        this.paymentMethod = scanner.nextLine().trim().toLowerCase();
+
+        switch (paymentMethod) {
+            case "credit":
+                System.out.println("Please enter credit ID ");
+                long creditId = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println("Please enter credit CVV");
+                long creditCvv = scanner.nextInt();
+                scanner.nextLine();
+                break;
+
+            case "cash":
+                System.out.println("You will pay in Cash");
+                break;
+
+            default:
+                System.out.println("Please enter wallet ID ");
+                int walletId = scanner.nextInt();
+                scanner.nextLine(); // clear buffer
+                break;
+        }
     }
 
-    boolean confirmation() {
-        fillPay();
-        System.out.println("Service Fee : " + res.getServiceFee());
-        System.out.println("Delivery Fee : " + res.getDeliveryFee());
-        System.out.println("Total fee : " + calcTotal(c));
-        System.out.println("Payment method : " + Payment);
-        System.out.println("Address : " + UserObj.getAddress());
-        System.out.println("Estimated Time for your order : " + res.getEstimatedTime());
-        System.out.println("Your order ID : " + orderId);
+    @Override
+    public boolean confirmOrder() {
+        selectPaymentMethod();
+        System.out.println("Service Fee: " + restaurant.getServiceFee());
+        System.out.println("Delivery Fee: " + restaurant.getDeliveryFee());
+        System.out.println("Total Fee: " + calculateTotalFee());
+        System.out.println("Payment Method: " + paymentMethod);
+        System.out.println("Address: " + user.getAddress());
+        System.out.println("Estimated Time for your order: " + (restaurant.getDeliveryTime() + restaurant.getPreparingTime()) / 1000 + " min");
+        System.out.println("Your Order ID: " + orderId);
         System.out.println("Enter 'c' to confirm or 'cancel' to cancel");
-        String input = scanner.nextLine().trim().toLowerCase();
 
-        if (input.equals("c")) {
+        String userInput = scanner.nextLine().trim().toLowerCase();
+
+        if (userInput.equals("c")) {
             System.out.println("Order confirmed");
-            confm = true;
-            orders.add(this);
-            stateStartTime = System.currentTimeMillis();
-            display();
-            updateOrderState();
+            isConfirmed = true;
+            orderList.add(this);
+            orderStartTime = System.currentTimeMillis();
             trackOrderStatus();
-        } else if (input.equals("cancel")) {
+        } else if (userInput.equals("cancel")) {
             System.out.println("Order cancelled");
             return false;
         }
 
-        return confm;
+        return isConfirmed;
     }
 
-    void display() {
-        System.out.println("Restaurant : " + res.getName());
-        System.out.println("TotalFee : " + totalFee);
-        System.out.println("Order ID : " + orderId);
+    @Override
+    public void display() {
+        System.out.println("Restaurant: " + restaurant.getName());
+        System.out.println("Total Fee: " + totalFee);
+        System.out.println("Order ID: " + orderId);
     }
 
 
-    public void displayOrderState() {
+    public void updateOrderStatus() {
+        long currentTime = System.currentTimeMillis();
+        long elapsedTime = currentTime - orderStartTime;
 
-        System.out.println("Current Order State: " + orderState);
+        if (elapsedTime >= (restaurant.getPreparingTime() + restaurant.getDeliveryTime())) {
+            orderStatus = "Completed";
+        } else if (elapsedTime >= restaurant.getPreparingTime()) {
+            orderStatus = "Being Delivered";
+        } else {
+            orderStatus = "Being Prepared";
+        }
     }
-    void trackOrderStatus() {
+
+    @Override
+    public void trackOrderStatus() {
         System.out.println("To track the order, type 's' to check the status or 'exit' to finish.");
         while (true) {
             try {
-                String status = scanner.nextLine().trim().toLowerCase();
-                if (status.equals("s")) {
-                    displayOrderState();
-                } else if (status.equals("exit")) {
+                String userInput = scanner.nextLine().trim().toLowerCase();
+                if (userInput.equals("s")) {
+                    displayOrderStatus();
+                } else if (userInput.equals("exit")) {
                     System.out.println("Exiting tracking.");
                     break;
                 }
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
- }
-}
+        }
+    }
+
+    public void displayOrderStatus() {
+        updateOrderStatus();
+        System.out.println("Current Order Status: " + orderStatus);
+    }
 }

@@ -11,7 +11,7 @@ public class User extends Registration {
     private int mobileNumber;
     public  User currentUser = null;
     private static ArrayList<User> users = new ArrayList<>();
-    private static final File userfile= new File("users.txt");
+    private static final File userfile= new File("C:\\Users\\asus\\IdeaProjects\\thotho\\src\\users.txt");
     public User(String FirstName, String LastName,  String email, String password, String address , int mobileNumber , String country) {
         super(FirstName, LastName, email, password);
         this.address = address;

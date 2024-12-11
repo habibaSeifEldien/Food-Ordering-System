@@ -3,14 +3,17 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
+        Restaurant res=new Restaurant();
+        Admin admin=new Admin();
+        admin.loadFromFile();
+        res.filee.loadFromFile(); // Load restaurants from file at startup/ Load restaurants from file at startup
         while (true) {
             System.out.println("Welcome to the System");
             System.out.println("1. Create User Account");
             System.out.println("2. Login as User");
             System.out.println("3. Display All Users");
             System.out.println("4. Login as Admin");
-            System.out.println("5. Exit");
+            System.out.println("5. Exit&Save");
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline
@@ -80,9 +83,12 @@ public class Main {
                     break;
 
                 case 5:
-                    System.out.println("Exiting the system. Goodbye!");
+                    res.filee.saveToFile();
+                    admin.saveToFile();
+                    System.out.println("Data saved successfully. Exiting...");
                     scanner.close();
-                    return;
+                    System.exit(0);
+                    break;
 
                 default:
                     System.out.println("Invalid choice. Please try again.");

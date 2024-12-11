@@ -1,4 +1,0 @@
-Alice,Smith,123 Street,password123,USA,alice@example.com,1234567890
-Bob,Johnson,456 Avenue,password456,UK,bob@example.com,987654321
-
-

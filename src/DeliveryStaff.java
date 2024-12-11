@@ -1,32 +1,30 @@
 import java.io.*;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.io.FileNotFoundException;
 import java.util.Scanner;
+
 public class DeliveryStaff {
     private String firstname;
     private String lastname;
     private String Government;
+    private String RestaurantName;
     private boolean Available;
     private double review;
-    private static File REVIEW_FILE = new File("C:\\Users\\asus\\IdeaProjects\\thotho\\src\\reviewss.txt");
+    public static  File REVIEW_FILE = new File("C:\\Users\\asus\\IdeaProjects\\thotho\\src\\review.txt");
     public ArrayList<DeliveryStaff> staff = new ArrayList<>();
     private static Scanner scanner = new Scanner(System.in);
-    public DeliveryStaff(String firstname, String lastname, String Government, double review, boolean Available) {
+    public DeliveryStaff(String firstname, String lastname, String Government, String restaurantName, double review,boolean Available) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.Government = Government;
-        this.Available = Available;
-        this.review = review;
+        this.RestaurantName = restaurantName;
+        this.review=review;
+        this.Available=Available;
     }
-    public DeliveryStaff() {
-        setReview(review);
-    }
-
+    public DeliveryStaff(){};
     public void setFirstname(String firstname) {
         this.firstname = firstname;
     }
-
     public String getFirstname() {
         return firstname;
     }
@@ -68,53 +66,53 @@ public class DeliveryStaff {
         }
     }
 
-
     public void saveToFile() {
         try (FileWriter writer = new FileWriter(REVIEW_FILE)) {
             for (DeliveryStaff member : staff) {
-                writer.write(member.firstname + "," + member.lastname + "," +
-                        member.Government + "," + member.review + "," +
-                        member.Available + "\n");
+                writer.write(member.firstname+","+member.lastname + "," + member.Government + "," + member.RestaurantName + "," +member.review + "," +member.Available +"\n");
+                writer.write("\n"); // Separator for restaurants
             }
             System.out.println("Data saved successfully!");
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("Failed to save data.");
         }
     }
-
     public void loadFromFile() {
-        staff.clear(); // Clear existing data only if loading succeeds
+        staff.clear(); // Clear existing data
         try (Scanner fileScanner = new Scanner(REVIEW_FILE)) {
             while (fileScanner.hasNextLine()) {
-                String line = fileScanner.nextLine().trim();
-                if (line.isEmpty()) continue;
-                String[] details = line.split(",");
-                if (details.length < 5) {
-                    System.out.println("Skipping malformed entry: " + line);
+                String detailsLine = fileScanner.nextLine().trim();
+                if (detailsLine.isEmpty()) continue; // Skip empty lines
+
+                String[] details = detailsLine.split(","); // Split the line into details
+
+                if (details.length < 6) { // Ensure the line has all required fields
+                    System.out.println("Skipping malformed entry: " + detailsLine);
                     continue;
                 }
+
                 try {
+
                     String firstname = details[0].trim();
                     String lastname = details[1].trim();
                     String government = details[2].trim();
-                    double review = Double.parseDouble(details[3].trim());
-                    boolean available = Boolean.parseBoolean(details[4].trim());
+                    String restaurantName = details[3].trim();
+                    double review = Double.parseDouble(details[4].trim());
+                    boolean available = Boolean.parseBoolean(details[5].trim());
 
-                    DeliveryStaff member = new DeliveryStaff(firstname, lastname, government, review, available);
+                    // Create and add a new DeliveryStaff member
+                    DeliveryStaff member = new DeliveryStaff(firstname, lastname, government, restaurantName, review, available);
                     staff.add(member);
                 } catch (NumberFormatException e) {
-                    System.out.println("Skipping entry due to invalid number format: " + line);
+                    System.out.println("Invalid number format in entry: " + detailsLine);
                 }
             }
-            System.out.println("Data loaded successfully!");
         } catch (FileNotFoundException e) {
-             System.out.println("File not found: " + e.getMessage());
+            System.out.println("File not found: " + REVIEW_FILE.getAbsolutePath());
         }
     }
 
-
-    public void add_deliverymember() {
+    public  void add_deliverymember() {
         System.out.println("Enter the FirstName of the Delivery Member :");
         String firstname = scanner.nextLine();
         System.out.println("Enter the SecondName of the Delivery Member:");
@@ -128,23 +126,24 @@ public class DeliveryStaff {
         System.out.println("Enter State of the Delivery Member:");
         boolean state = scanner.nextBoolean();
 
-        DeliveryStaff member = new DeliveryStaff(firstname, secondname, government, review, state);
+        DeliveryStaff member = new DeliveryStaff(firstname, secondname, government, restaurnatname, review,state);
         staff.add(member);
         saveToFile();
-        //loadFromFile();
+        loadFromFile();
     }
-
     public DeliveryStaff searchByGovernment(Restaurant resturant) {
         boolean found = false;
+
         for (DeliveryStaff member : staff) {
             if (member.getGovernment().equalsIgnoreCase(resturant.getGovernment()) && member.Available) {
                 // Print details of the matching delivery staff
                 System.out.println("Found Delivery Member:");
                 System.out.println("Name: " + member.getFirstname() + " " + member.getLastname());
                 System.out.println("Government: " + member.getGovernment());
+                System.out.println("Restaurant Name: " + member.RestaurantName);
                 System.out.println("Review: " + member.getReview() + " / 5.0");
                 found = true;
-                member.Available = false;
+                member.Available=false;
                 return member;
             }
         }
@@ -152,18 +151,18 @@ public class DeliveryStaff {
             System.out.println("No matching delivery members found in " + resturant.getGovernment());
         }
         return null;
-
     }
     public void removedeliverymember(DeliveryStaff delivery){
         staff.remove(delivery);
         System.out.println(delivery.firstname + delivery.lastname + "has been removed.");
         saveToFile();
     }
-
     public void displayDetails() {
         System.out.println("Delivery Staff Details:");
-        System.out.println("Name: " + this.firstname + " " + this.lastname);
-        System.out.println("Location: " + this.Government);
-        System.out.println("Review: " + this.review + "/5.0");
-    }
+        System.out.println("Name: " + firstname + " " + lastname);
+        System.out.println("Location: " + Government);
+        System.out.println("Restaurant Name: " + RestaurantName);
+        System.out.println("Review: " + review + " / 5.0");
+        System.out.println("Availability: " + Available);
+}
 }

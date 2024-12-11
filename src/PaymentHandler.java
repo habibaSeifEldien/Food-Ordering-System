@@ -1,8 +1,8 @@
 public interface PaymentHandler
 {
-    void fillPay();
-    boolean confirmation ();
-    void OrderState();
+    void selectPaymentMethod();
+    boolean confirmOrder ();
+    void updateOrderStatus();
     void display();
-    void orderTracking();
+    void trackOrderStatus();
 }

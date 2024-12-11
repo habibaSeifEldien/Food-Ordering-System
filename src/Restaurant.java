@@ -4,15 +4,15 @@ import java.util.*;
 public class Restaurant {
     private String name;
     private Menu menu;
-    private double deliveryFee;
+    private float deliveryFee;
     private String category;
     private String area;
     private String government;
-    private double serviceFee;
-    private String estimatedTime;
+    private float serviceFee;
+    private int PreparingTime;
+    private int DeliveryTime;
     private Scanner scanner = new Scanner(System.in);
     public static handles filee = new handles();
-
     // Constructors
     public Restaurant(String name, String category, String government, String area, float fee) {
         this.name = name;
@@ -82,13 +82,22 @@ public class Restaurant {
         this.serviceFee = serviceFee;
     }
 
-    public String getEstimatedTime() {
-        return estimatedTime;
+    public int getPreparingTime() {
+        return PreparingTime ;
     }
 
-    public void setEstimatedTime(String estimatedTime) {
-        this.estimatedTime = estimatedTime;
+    public void setPreparingTime(int PreparingTime) {
+        this.PreparingTime = PreparingTime;
     }
+    public int getDeliveryTime()
+    {
+        return DeliveryTime;
+    }
+    public void setDeliveryTime()
+    {
+        this.DeliveryTime=DeliveryTime;
+    }
+
 
     // Methods
     public void addRestaurant() {
@@ -129,7 +138,6 @@ public class Restaurant {
         filee.saveToFile();
         filee.loadFromFile();
     }
-
     public void displayRestaurantsByGovernment() {
         System.out.println("Which Government do you need?: ");
         String gov = scanner.next().trim();

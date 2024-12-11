@@ -9,7 +9,7 @@ public class Admin extends Registration{
     public int adminID;
     public  Admin currentAdmin = null;
     public static ArrayList<Admin> admins = new ArrayList<>();
-    private static final File adminfile= new File("Admin.txt");
+    private static  File adminfile= new File("C:\\Users\\asus\\IdeaProjects\\thotho\\src\\Adminn.txt");
 
     public Admin (String FirstName, String LastName, String email, String password,int adminID){
         super(FirstName, LastName, email, password);
@@ -32,7 +32,10 @@ public class Admin extends Registration{
             if (admin.getEmail().equals(enteredEmail) && admin.getPassword().equals(enteredPassword)) {
                 currentAdmin = admin;
                 System.out.println("\"Login successful for admin: " +enteredEmail+ " , " +enteredPassword );
+                saveToFile();
                 return true;
+
+
             }
         }
         System.out.println("\"Login failed . Invalid email or password");
@@ -93,6 +96,7 @@ public class Admin extends Registration{
                     System.out.println("Skipping admin with invalid Admin ID: " + detailsLine);
                 }
             }
+            System.out.println("Data loaded successfully!");
         }
         catch (FileNotFoundException e) {
             System.err.println("File not found: " + e.getMessage());
