@@ -12,7 +12,7 @@ public class Main {
             System.out.println("1. Create User Account");
             System.out.println("2. Login as User");
             System.out.println("3. Display All Users");
-            System.out.println("4. Login as Admin");
+            
             System.out.println("5. Exit&Save");
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
