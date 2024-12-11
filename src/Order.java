@@ -80,22 +80,9 @@ public class Order {
         System.out.println("Order ID : " + orderId);
     }
 
-    public void updateOrderState() {
-        long currentTime = System.currentTimeMillis();
-        long totalElapsedTime = currentTime - stateStartTime;
-        if (totalElapsedTime >= (res.PreparingTime + res.DeliveryTime)) {
-            orderState = "Completed";
-        }
-        else if (totalElapsedTime >= res.PreparingTime) {
-            orderState = "Being Delivered";
-        }
-        else {
-            orderState = "Being Prepared";
-        }
-    }
 
     public void displayOrderState() {
-        updateOrderState();
+
         System.out.println("Current Order State: " + orderState);
     }
     void trackOrderStatus() {
