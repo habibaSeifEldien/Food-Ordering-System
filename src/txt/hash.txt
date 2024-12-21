@@ -1,0 +1,163 @@
+Restaurant 2
+Category 2,Giza,6th October,60.0
+Main,Burger,Juicy and delicious,200,low
+Side,Fries,Golden and crispy,50,low
+Desserts,Ice Cream,Vanilla flavored,80,low
+Drinks,Pepsi,Chilled cola,25,low
+side,hahwshy,sokhn,200,high
+main,dgddsdg,gsd,555,high
+
+Restaurant 3
+Category 3,Alexandria,Smouha,45.0
+Main,Shawarma,guicy,90,high
+Side,Salad,Fresh greens,35,low
+Desserts,Kunafa,Crispy and creamy,70,high
+Drinks,Tea,With mint,20,low
+
+Restaurant 4
+Category 4,Sharm El-Sheikh,Naama Bay,70.0
+Main,Steak,Grilled to perfection,200,low
+Side,Mashed Potatoes,Buttery and creamy,50,low
+Desserts,Mousse,Chocolate heaven,90,low
+Drinks,Mojito,Lime and mint,40,low
+
+Restaurant 5
+Category 5,Aswan,City Center,40.0
+Main,Koshary,Traditional Egyptian dish,30,low
+Side,Falafel,Crunchy and green,20,low
+Desserts,Basbousa,Syrupy semolina cake,25,low
+Drinks,Hibiscus,Chilled drink,15,low
+
+Restaurant 6
+Category 6,Cairo,Heliopolis,55.0
+Main,Sushi,Freshly rolled,180,low
+Side,Miso Soup,Light and warming,35,low
+Desserts,Matcha Cake,Green tea flavor,50,low
+Drinks,Sake,Traditional drink,100,low
+
+Restaurant 7
+Category 7,Ismailia,Centre,30.0
+Main,Fish,Grilled seabass,100,low
+Side,Rice,Pilaf style,25,low
+Desserts,Pudding,Creamy and sweet,40,low
+Drinks,Orange Juice,Freshly squeezed,20,low
+
+Restaurant 8
+Category 8,Dahab,Lagoon Area,65.0
+Main,Pasta,Alfredo sauce,70,low
+Side,Bruschetta,Tomato and basil,30,low
+Desserts,Tiramisu,Coffee flavored,60,low
+Drinks,Cappuccino,Rich and creamy,35,low
+
+Restaurant 9
+Category 9,Fayoum,Lake Side,25.0
+Main,Grilled Chicken,Herb marinated,85,low
+Side,Potato Wedges,Seasoned,40,low
+Desserts,Custard,Vanilla infused,30,low
+Drinks,Soda,Chilled,20,low
+
+Restaurant 10
+Category 10,Luxor,Karnak,50.0
+Main,Lamb Chops,Chargrilled,150,high
+Side,Stuffed Vine Leaves,Rice and herbs,40,low
+Desserts,Umm Ali,Egyptian bread pudding,35,low
+Drinks,Mango Juice,Freshly blended,25,low
+
+Restaurant 11
+Category 11,Cairo,Zamalek,60.0
+Main,Seafood Platter,Assorted seafood,200,low
+Side,Coleslaw,Creamy cabbage mix,30,low
+Desserts,Cheesecake,Rich and creamy,70,low
+Drinks,Latte,With steamed milk,40,low
+
+Restaurant 12
+Category 12,Alexandria,Corniche,45.0
+Main,Pizza,Margherita style,110,low
+Side,Onion Rings,Crispy and golden,35,low
+Desserts,Gelato,Italian ice cream,50,low
+Drinks,Frappe,Cold coffee drink,30,low
+
+Restaurant 13
+Category 13,Asyut,City Center,35.0
+Main,Kebab,Grilled meat skewers,90,low
+Side,Baba Ganoush,Smoky eggplant dip,25,low
+Desserts,Rice Pudding,Cinnamon sprinkled,20,low
+Drinks,Iced Tea,Peach flavor,15,low
+
+Restaurant 14
+Category 14,Marsa Alam,Port Ghalib,65.0
+Main,Lobster,Grilled with butter,250,low
+Side,Garlic Bread,Buttery and soft,40,low
+Desserts,Chocolate Cake,Dark and rich,75,low
+Drinks,Sparkling Water,Chilled,25,low
+
+Restaurant 15
+Category 15,Suez,City Center,30.0
+Main,Chicken Shawarma,Garlic sauce wrap,50,low
+Side,Pita Bread,Warm and soft,15,low
+Desserts,Fruit Salad,Fresh mix,25,low
+Drinks,Lemon Mint,Freshly blended,20,low
+
+Restaurant 16
+Category 16,Cairo,Maadi,70.0
+Main,Risotto,Mushroom flavored,85,low
+Side,Breadsticks,Garlic coated,25,low
+Desserts,Apple Pie,Cinnamon spiced,30,low
+Drinks,Americano,Black coffee,15,low
+
+Restaurant 17
+Category 17,Giza,Zayed City,50.0
+Main,Beef Stroganoff,Classic Russian dish,120,low
+Side,Mashed Potatoes,Buttery and creamy,40,low
+Desserts,Ice Cream Sundae,Chocolate topped,50,low
+Drinks,Milkshake,Vanilla flavor,35,low
+
+Restaurant 18
+Category 18,Damietta,City Center,40.0
+Main,Grilled Shrimp,Lemon butter sauce,130,low
+Side,French Fries,Golden and crisp,30,low
+Desserts,Creme Brulee,Caramelized sugar top,45,low
+Drinks,Apple Juice,Freshly squeezed,20,low
+
+Restaurant 19
+Category 19,Sohag,City Center,30.0
+Main,Stuffed Peppers,Rice and minced meat,40,low
+Side,Vegetable Soup,Healthy mix,25,low
+Desserts,Baklava,Nut filled pastry,35,low
+Drinks,Herbal Tea,Chamomile,15,low
+
+Restaurant 20
+Category 20,Cairo,Downtown,50.0
+Main,Fettuccine Alfredo,Rich and creamy,75,low
+Side,Caprese Salad,Mozzarella and tomato,35,low
+Desserts,Tart,Lemon flavored,40,low
+Drinks,Espresso,Strong and bold,10,low
+
+Restaurant 21
+Category 21,Alexandria,Montazah,60.0
+Main,Pizza,Pepperoni style,120,low
+Side,Cheesy Fries,Loaded with cheese,50,low
+Desserts,Banana Split,With ice cream,60,low
+Drinks,Hot Chocolate,Rich cocoa,30,low
+
+Restaurant 22
+Category 22,Port Said,Harbor Area,35.0
+Main,Grilled Fish,Lemon herb marinade,80,low
+Side,Corn on the Cob,Buttery and grilled,20,low
+Desserts,Donut,Glazed and sweet,25,low
+Drinks,Lassi,Mango flavor,15,low
+
+Restaurant 23
+Category 23,Minya,City Center,30.0
+Main,Falafel Wrap,Tahini sauce,25,low
+Side,Hummus,With olive oil,15,low
+Desserts,Maamoul,Date filled cookies,20,low
+Drinks,Carrot Juice,Freshly squeezed,15,low
+
+Restaurant 24
+Category 24,Qena,City Center,30.0
+Main,Lentil Soup,Healthy and warm,25,low
+Side,Bread,Rustic loaf,10,low
+Desserts,Panna Cotta,Berry topped,35,low
+Drinks,Coconut Water,Natural refreshment,20,low
+
